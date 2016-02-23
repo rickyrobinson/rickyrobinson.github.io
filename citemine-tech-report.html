@@ -1,0 +1,628 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+
+<script type="text/javascript" src="/static/js/analytics.js"></script>
+<script type="text/javascript">archive_analytics.values.server_name="wwwb-app15.us.archive.org";archive_analytics.values.server_ms=110;</script>
+<link type="text/css" rel="stylesheet" href="/static/css/banner-styles.css"/>
+
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+	<title>On the Design and Implementation of a Market Mechanism for Peer Review and Publishing</title>
+	<link href="citemine-paper.css" media="screen,print" rel="stylesheet" type="text/css" />
+
+</head>
+
+<!-- NICTA Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-3379309-1");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+<!-- End NICTA Google Analytics -->
+
+<!-- Ricky Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-5233085-3");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>
+<!-- End Ricky Google Analytics -->
+
+<body>
+
+
+<!-- BEGIN WAYBACK TOOLBAR INSERT -->
+<script type="text/javascript" src="/static/js/disclaim-element.js" ></script>
+<script type="text/javascript" src="/static/js/graph-calc.js" ></script>
+<script type="text/javascript">//<![CDATA[
+var __wm = (function(imgWidth,imgHeight,yearImgWidth,monthImgWidth){
+var wbPrefix = "/web/";
+var wbCurrentUrl = "http://nicta.com.au/people/rrobinson/publications/citemine-paper.html";
+
+var firstYear = 1996;
+var displayDay = "25";
+var displayMonth = "Mar";
+var displayYear = "2012";
+var prettyMonths = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+var $D=document,$=function(n){return document.getElementById(n)};
+var trackerVal,curYear = -1,curMonth = -1;
+var yearTracker,monthTracker;
+function showTrackers(val) {
+  if (val===trackerVal) return;
+  var $ipp=$("wm-ipp");
+  var $y=$("displayYearEl"),$m=$("displayMonthEl"),$d=$("displayDayEl");
+  if (val) {
+    $ipp.className="hi";
+  } else {
+    $ipp.className="";
+    $y.innerHTML=displayYear;$m.innerHTML=displayMonth;$d.innerHTML=displayDay;
+  }
+  yearTracker.style.display=val?"inline":"none";
+  monthTracker.style.display=val?"inline":"none";
+  trackerVal = val;
+}
+function trackMouseMove(event,element) {
+  var eventX = getEventX(event);
+  var elementX = getElementX(element);
+  var xOff = Math.min(Math.max(0, eventX - elementX),imgWidth);
+  var monthOff = xOff % yearImgWidth;
+
+  var year = Math.floor(xOff / yearImgWidth);
+  var monthOfYear = Math.min(11,Math.floor(monthOff / monthImgWidth));
+  // 1 extra border pixel at the left edge of the year:
+  var month = (year * 12) + monthOfYear;
+  var day = monthOff % 2==1?15:1;
+  var dateString = zeroPad(year + firstYear) + zeroPad(monthOfYear+1,2) +
+    zeroPad(day,2) + "000000";
+
+  $("displayYearEl").innerHTML=year+firstYear;
+  $("displayMonthEl").innerHTML=prettyMonths[monthOfYear];
+  // looks too jarring when it changes..
+  //$("displayDayEl").innerHTML=zeroPad(day,2);
+  var url = wbPrefix + dateString + '/' +  wbCurrentUrl;
+  $("wm-graph-anchor").href=url;
+
+  if(curYear != year) {
+    var yrOff = year * yearImgWidth;
+    yearTracker.style.left = yrOff + "px";
+    curYear = year;
+  }
+  if(curMonth != month) {
+    var mtOff = year + (month * monthImgWidth) + 1;
+    monthTracker.style.left = mtOff + "px";
+    curMonth = month;
+  }
+}
+function hideToolbar() {
+  $("wm-ipp").style.display="none";
+}
+function bootstrap() {
+  var $spk=$("wm-ipp-sparkline");
+  yearTracker=$D.createElement('div');
+  yearTracker.className='yt';
+  with(yearTracker.style){
+    display='none';width=yearImgWidth+"px";height=imgHeight+"px";
+  }
+  monthTracker=$D.createElement('div');
+  monthTracker.className='mt';
+  with(monthTracker.style){
+    display='none';width=monthImgWidth+"px";height=imgHeight+"px";
+  }
+  $spk.appendChild(yearTracker);
+  $spk.appendChild(monthTracker);
+
+  var $ipp=$("wm-ipp");
+  $ipp&&disclaimElement($ipp);
+}
+return{st:showTrackers,mv:trackMouseMove,h:hideToolbar,bt:bootstrap};
+})(525, 27, 25, 2);//]]>
+</script>
+<style type="text/css">
+body {
+  margin-top:0 !important;
+  padding-top:0 !important;
+  min-width:800px !important;
+}
+</style>
+<div id="wm-ipp" lang="en" style="display:none;">
+
+<div style="position:fixed;left:0;top:0;width:100%!important">
+<div id="wm-ipp-inside">
+   <table style="width:100%;"><tbody><tr>
+   <td id="wm-logo">
+       <a href="/web/" title="Wayback Machine home page"><img src="/static/images/toolbar/wayback-toolbar-logo.png" alt="Wayback Machine" width="110" height="39" border="0" /></a>
+   </td>
+   <td class="c">
+       <table style="margin:0 auto;"><tbody><tr>
+       <td class="u" colspan="2">
+       <form target="_top" method="get" action="/web/form-submit.jsp" name="wmtb" id="wmtb"><input type="text" name="url" id="wmtbURL" value="http://nicta.com.au/people/rrobinson/publications/citemine-paper.html" style="width:400px;" onfocus="this.focus();this.select();" /><input type="hidden" name="type" value="replay" /><input type="hidden" name="date" value="20120325023115" /><input type="submit" value="Go" /><span id="wm_tb_options" style="display:block;"></span></form>
+       </td>
+       <td class="n" rowspan="2">
+           <table><tbody>
+           <!-- NEXT/PREV MONTH NAV AND MONTH INDICATOR -->
+           <tr class="m">
+           	<td class="b" nowrap="nowrap">
+
+		    <a href="/web/20110411132957/http://nicta.com.au/people/rrobinson/publications/citemine-paper.html" title="11 Apr 2011">APR</a>
+
+		</td>
+		<td class="c" id="displayMonthEl" title="You are here: 2:31:15 Mar 25, 2012">MAR</td>
+		<td class="f" nowrap="nowrap">
+
+		    <a href="/web/20151203212403/http://nicta.com.au/people/rrobinson/publications/citemine-paper.html" title="3 Dec 2015"><strong>DEC</strong></a>
+
+                </td>
+	    </tr>
+           <!-- NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR -->
+           <tr class="d">
+               <td class="b" nowrap="nowrap">
+
+                   <a href="/web/20110411132957/http://nicta.com.au/people/rrobinson/publications/citemine-paper.html" title="13:29:57 Apr 11, 2011"><img src="/static/images/toolbar/wm_tb_prv_on.png" alt="Previous capture" width="14" height="16" border="0" /></a>
+
+               </td>
+               <td class="c" id="displayDayEl" style="width:34px;font-size:24px;" title="You are here: 2:31:15 Mar 25, 2012">25</td>
+	       <td class="f" nowrap="nowrap">
+
+		   <a href="/web/20151203212403/http://nicta.com.au/people/rrobinson/publications/citemine-paper.html" title="21:24:03 Dec 3, 2015"><img src="/static/images/toolbar/wm_tb_nxt_on.png" alt="Next capture" width="14" height="16" border="0" /></a>
+
+	       </td>
+           </tr>
+           <!-- NEXT/PREV YEAR NAV AND YEAR INDICATOR -->
+           <tr class="y">
+	       <td class="b" nowrap="nowrap">
+
+                   <a href="/web/20110222212137/http://nicta.com.au/people/rrobinson/publications/citemine-paper.html" title="22 Feb 2011"><strong>2011</strong></a>
+
+               </td>
+               <td class="c" id="displayYearEl" title="You are here: 2:31:15 Mar 25, 2012">2012</td>
+	       <td class="f" nowrap="nowrap">
+
+	           <a href="/web/20151203212403/http://nicta.com.au/people/rrobinson/publications/citemine-paper.html" title="3 Dec 2015"><strong>2015</strong></a>
+
+	       </td>
+           </tr>
+           </tbody></table>
+       </td>
+       </tr>
+       <tr>
+       <td class="s">
+           <a class="t" href="/web/20120325023115*/http://nicta.com.au/people/rrobinson/publications/citemine-paper.html" title="See a list of every capture for this URL">12 captures</a>
+           <div class="r" title="Timespan for captures of this URL">26 Jul 09 - 3 Dec 15</div>
+       </td>
+       <td class="k">
+       <a href="" id="wm-graph-anchor">
+       <div id="wm-ipp-sparkline" title="Explore captures for this URL">
+	 <img id="sparklineImgId" alt="sparklines"
+		 onmouseover="__wm.st(1)" onmouseout="__wm.st(0)"
+		 onmousemove="__wm.mv(event,this)"
+		 width="525"
+		 height="27"
+		 border="0"
+		 src="/web/jsp/graph.jsp?graphdata=525_27_1996:-1:000000000000_1997:-1:000000000000_1998:-1:000000000000_1999:-1:000000000000_2000:-1:000000000000_2001:-1:000000000000_2002:-1:000000000000_2003:-1:000000000000_2004:-1:000000000000_2005:-1:000000000000_2006:-1:000000000000_2007:-1:000000000000_2008:-1:000000000000_2009:-1:000000101400_2010:-1:011000000000_2011:-1:010100000000_2012:2:001000000000_2013:-1:000000000000_2014:-1:000000000000_2015:-1:000000000001_2016:-1:000000000000" />
+       </div>
+       </a>
+       </td>
+       </tr></tbody></table>
+   </td>
+   <td class="r">
+       <a href="#close" onclick="__wm.h();return false;" style="background-image:url(/static/images/toolbar/wm_tb_close.png);top:5px;" title="Close the toolbar">Close</a>
+       <a href="http://faq.web.archive.org/" style="background-image:url(/static/images/toolbar/wm_tb_help.png);bottom:5px;" title="Get some help using the Wayback Machine">Help</a>
+   </td>
+   </tr></tbody></table>
+</div>
+</div>
+</div>
+<script type="text/javascript">__wm.bt();</script>
+<!-- END WAYBACK TOOLBAR INSERT -->
+
+
+    <h2>On the Design and Implementation of a Market Mechanism for Peer Review and Publishing</h2>
+
+    <h3 class="author">Ricky Robinson</h3>
+
+    <div class="affiliation">
+        <a href="http://nicta.com.au/" title="NICTA | Home">NICTA</a><br />
+        <a href="http://maps.google.com.au/maps/ms?ie=UTF8&amp;hl=en&amp;msa=0&amp;msid=115561437934647588348.000451a3afcc8c54eec05&amp;ll=-27.497803,153.014692&amp;spn=0.005282,0.011373&amp;t=h&amp;z=17" title="">Queensland Research Laboratory</a><br />
+        St Lucia, Queensland, Australia
+    </div>
+
+    <div class="affiliation">
+        <a href="http://uq.edu.au/" title="The University of Queensland, Australia">The University of Queensland</a><br />
+        <a href="http://www.itee.uq.edu.au/" title="School of Information Technology &amp; Electrical Engineering">School of Information Technology and Electrical Engineering</a><br />
+        St Lucia, Queensland, Australia
+    </div>
+
+    <div class="tech-report">
+        <h3>Technical Report Number: QRL-2143</h3>
+    </div>
+
+    <div class="tech-report">
+        <h4><a href="http://citemine.com/manuscripts/1" title="On the Design and Implementation of a Market Mechanism for Peer Review and Publishing &mdash; Citemine">http://citemine.com/manuscripts/1</a></h4>
+    </div>
+
+    <div class="abstract-body">
+    <h3 class="abstract">Abstract</h3>
+    <p id="abstract">
+        Traditional methods of peer review are coming under strain as the volume of manuscripts and the number of forums for manuscript submission rise. These pressures can result in poorer quality reviews, extended publication times, and higher costs to the organisations that fund research. In this paper we describe a method for reducing reviewing burden, expediting feedback and shortening publication times. Furthermore, by its nature, the method produces <em>leading</em> (as opposed to <em>lagging/trailing</em>) publication metrics for authors and the manuscripts they write, and we show how these metrics can be used by search engines to provide more useful orderings of search results. Finally, we briefly discuss the potential to apply the underlying mechanism of the method to application domains beyond research publishing, such as the web as a whole.
+    </p>
+    </div>
+
+    <div id="keywords">
+        <strong>Keywords</strong> &#8212; <span>peer review, publishing, bibliometrics, scientometrics, reputation, mechanism design, open access, search</span>
+    </div>
+
+    <ol class="sections">
+        <li id="introduction" class="section"><h3>Introduction</h3>
+            <div>
+    <p>
+        Peer review has served as a cornerstone of scientific advancement over the last century. In some fields of scholarship, peer review has been integral for an even longer period. However, in recent times, several factors have conspired to prompt many to question traditional peer review processes. These factors range from issues of integrity to the emergence of technologies that might feasibly reduce the time to publication and the costs of knowledge dissemination.
+    </p>
+    <p>
+        Meanwhile, employers of researchers, government and non-government research funding agencies and others rely on bibliometrics, in combination with various other measures of impact, to assess the research strength of research groups or prospective employees. Most bibliometric measures are <em>trailing</em> indicators, and it is unclear whether they reflect <em>current</em> publishing performance or if they can be used to predict <em>future</em> publishing performance.
+    </p>
+    <p>
+        The ongoing debates around peer review and bibliometrics are taking place against a backdrop of fundamental change in the post-publication phase of the research publishing workflow. The <em>Open Access</em> movement is gaining momentum, aided in no small part by recent decisions taken by the faculties of several major universities, including MIT and Harvard. These resolutions come in the wake of an earlier <a href="http://grants.nih.gov/grants/guide/notice-files/NOT-OD-08-033.html" title="NOT-OD-08-033: Revised Policy on Enhancing Public Access to Archived Publications Resulting from NIH-Funded Research">policy</a> passed by the US Congress to make all research funded by the <a href="http://www.nih.gov/" title="National Institutes of Health (NIH) - Home Page">National Institutes for Health</a> (NIH) freely available to the public twelve months after publication via <a href="http://www.pubmedcentral.nih.gov/" title="PubMed Central Homepage">PubMed</a>. The cumulative effect of these mandates is to ensure that a large body of peer-reviewed scientific works, including those originally published under restrictive licenses and those published under some flavour of open access license, will remain in the public domain. No doubt this growing momentum will prompt more research institutions to update their publishing policies in the coming months and years.
+    </p>
+    <p>
+        It should be noted that some fields of scientific endeavour already have an ingrained open access culture. Physicists, for example, routinely publish pre-print versions of their articles to <a href="http://arxiv.org/">arXiv.org</a>, to solicit early feedback on drafts of their manuscripts, and to establish priority. According to the <a href="http://arxiv.org/help/primer">arXiv Primer</a>, <q cite="http://arxiv.org/help/primer">[s]ubmissions are reviewed by expert moderators to verify that they are topical and refereeable scientific contributions that follow accepted standards of scholarly communication (as exemplified by conventional journal articles).</q> In other words, these moderators act as a first pass filter, weeding out articles that are off topic or which are deemed not to contain a scientific contribution, but they are not expected to provide formal reviews or ratings of the manuscripts.
+    </p>
+    <p>
+        A large proportion of the papers submitted to arXiv.org are eventually published in an appropriate journal. For example, in 2005, almost sixty percent of papers submitted to arXiv.org in the field of high-energy physics went on to be published in a peer-reviewed journal (<a href="#Mele2006">Mele et al, 2006</a>). The administrators of arXiv.org do not publish download statistics; however, <a href="#Meho2006">Meho (2006)</a> suggests only 50% of (accepted) peer-reviewed articles are ever read by someone other than the authors and the reviewers. Furthermore, 90% of articles are never cited. Coupled with the fact that the most prestigious journals (or conferences for those fields of study, such as computer science, in which conferences are generally more highly regarded than journals) maintain low acceptance rates, we can infer that the vast majority of submitted manuscripts never see the light of day, even if they do successfully navigate the process of peer review!<a href="endnote-cost"><sup>1</sup></a>
+    </p>
+    <p>
+        In this paper we describe a method<a href="#endnote-patent"><sup>2</sup></a> that has potential to increase efficiencies in the dissemination and identification of important new research, and which, by its nature, introduces a potentially useful <em>predictive</em> publishing metric that can be used alongside existing bibliometric indicators such as citation counts, <a href="http://www.eigenfactor.org/index.php" title="eigenfactor.org - ranking and mapping scientific journals">Eigenfactor</a> (<a href="#Bergstrom2008">Bergstrom, 2008</a>), <em>h</em> index (<a href="#Hirsch2005">Hirsch, 2005</a>) and its variants. Unlike existing measures of research quality, the statistic introduced in this paper is a <em>direct reflection of how one's peers value one's research contribution at the present time</em> and <em>a forward indicator of the value to the research community of a piece of science</em>. It is therefore a quantitative measure that is closely tied to the judgements of one's peers. The method also provides an incentive that encourages authors to further review their own work (or, equally, to pass their manuscripts to colleagues for comments and editing) prior to broader dissemination (submission to the editorial board of a journal, for example).
+    </p>
+    <p>
+        The rest of the paper is structured as follows. <a href="#related-work">Section 2</a> provides an overview of related work. <a href="#approach">Section 3</a> details our approach to improving efficiencies in scientific communication and introduces a <em>leading</em> publishing metric. <a href="#properties">Section 4</a> analyses the properties inherent in the approach. In <a href="#implementation">Section 5</a> we describe our implementation of the approach. <a href="#conclusion">Section 6</a> concludes with a discussion of future work.
+    </p>
+    </div>
+    </li>
+
+    <li id="related-work" class="section"><h3>Related Work</h3>
+        <div>
+            <p>
+                There is an enormous body of related work in the fields of citation analysis and the mechanisms by which scientific research proceeds. We cannot hope to do justice to this existing body of work in this paper; instead, we provide an overview of some of the most relevant literature and tools. The descriptions of the approaches we give here are high-level; for more in-depth and formal explanations we refer the reader to the relevant paper. We divide this work into three overlapping categories: metrics and citation analysis; reputation and economic models; and <em>science 2.0</em>.
+            </p>
+            <ol>
+            <li class="unnumbered-section"><h4>Metrics and citation analysis</h4>
+            <p>
+                In academia, citation analysis plays a role in the assessment of research quality. Citation analysis builds on the concept of citation indexing, which is essentially the process of creating a map of citations between documents (<a href="#Garfield1979">Garfield, 1979</a>). Once assembled, these citation indices can provide a raw count of the number of citations accumulated by a given manuscript, or these counts can be aggregated to provide an overall count for a journal or research group. Initially these indices were created by hand, but autonomous citation indexing methods have enabled these indices to be assembled by a machine (<a href="#Lawrence1999">Lawrence et al., 1999</a>).
+            </p>
+            <p>
+                Various algorithms and formulae have been proposed to yield more meaningful scores than raw citation counts can provide. The <em>impact factor</em> of a journal (or other publication venue), proposed by <a href="#Garfield2006">Garfield (2006)</a> and in wide use today, is defined as the number of times the average article in that journal has been cited during some time period after publication (usually two years). Another measure proposed for ranking journals is Eigenfactor (<a href="#Bergstrom2008">Bergstrom et al., 2008</a>). <q cite="http://www.eigenfactor.org/methods.htm">The Eigenfactor<sup>&trade;</sup> score of a journal is an estimate of the percentage of time that library users spend with that journal.</q> Roughly speaking, we can picture this algorithm as a researcher following citations from article to article, journal to journal, and counting the number of times we return to each journal. The results are adjusted to account for varying citation cultures within disciplines (the average paper in one discipline may cite many more papers than the average paper in another field).
+            </p>
+            <p>
+                A very similar algorithm to Eigenfactor, but one which measures the importance of a single document rather than an entire journal, is PageRank<sup>&trade;</sup> (<a href="#Page1998">Page et al., 1998</a>), used by the Google search engine (<a href="#Brin1998">Brin and Page, 1998</a>). To calculate the PageRank of a document <em>A</em>, for each document that links to <em>A</em> we take its PageRank divided by its total number of outgoing links and then sum these results. PageRank for a set of documents can be computed iteratively, and it converges in logarithmic time.
+            </p>
+            <p>
+                In addition to evaluating the impact of any given document or volume, there are also metrics for establishing the publishing impact of the researchers who write those documents. <a href="#Hirsch2005">Hirsch (2005)</a> proposes the <em>h</em> index as a way to characterise the scientific output of a researcher. A researcher has index <em>h</em> if <em>h</em> of his or her <em>N</em> papers has at least <em>h</em> citations, and the remaining <em>N - h</em> papers have fewer than <em>h</em> citations. A conceptually simple way to think about this is to order the scientist's papers from most citations to least citations, and count down the list until we reach the point where our count exceeds the number of citations in the current paper. The <em>h</em> index, and its close cousin the <em>g</em> index (<a href="#Egghe2006">Egghe, 2006</a>), have gained wide acceptance amongst those who apply scientometric methods to evaluate researchers, and several tools have been developed to aid in the calculation of these metrics. The <em>h</em> index strikes a balance between the quantity and quality of a researcher's output, but this balance is somewhat arbitrary. For example, a scientist who has published a few very highly cited articles may receive a much lower <em>h</em> index than someone who has published many moderately cited articles.
+            </p>
+            <p>
+                In recent times, several web sites have made it simpler to gain citation statistics. These include <a href="http://scholar.google.com/">Google Scholar</a> and <a href="http://citeseerx.ist.psu.edu/">CiteSeer<sup>x</sup></a>. At present, these sites provide raw citation counts, but may evolve to provide other kinds of metrics. In the meantime, tools such as <a href="http://www.harzing.com/pop.htm" title="Publish or Perish - Anne-Wil Harzing">Publish or Perish</a> build on these web sites to provide these additional metrics.
+            </p>
+            </li>
+            <li class="unnumbered-section"><h4>Reputation and economic models</h4>
+            <p>
+                Economists and sociologists have contributed to a large body of work on the organisational systems of science. <a href="#Dasgupta1994">Dasgupta and David (1994)</a> discuss the economics of science in the modern era, shedding light upon the incentives at play in <q>open science</q>, contrast these with the market incentives in the world of <q>technology</q> (that is, commercial research and development), and examine the interplay between these incentives at the crossover points between these two worlds. <a href="#David2008">David (2008)</a> has also separately traced the origins of open science and its reputation systems.
+            </p>
+            <p>
+                Others have proposed quantifiable reputation systems for use within science. For instance <a href="#Hanson1990">Hanson (1990)</a> suggests a form of prediction market for scientific discovery. In this market, <q cite="http://hanson.gmu.edu/gamble.html">one bets on the future settlement of a present scientific controversy</q>. At any given time, the betting odds for a scientific theory reflect the chance it is later shown to be correct. The wealth accumulated by a scientist in the market can be viewed as proxy for his or her reputation. This system does not deal with research manuscripts and citations.
+            </p>
+            <p>
+                <a href="#Riyanto2002">Riyanto and Yetkiner (2002)</a> develop a system of incentives for authors and reviewers in the pre-review stages of scientific communication. While the incentives for authors to publish pre-prints are clear (to establish priority, for example), what incentive do reviewers have to provide feedback? The authors create this incentive by giving credits to reviewers that may later be spent on paper submission (the authors model this in terms of Pascal's Law).
+            </p>
+            <p>
+                Outside of science, the notion of reputation permeates many parts of society. <a href="#Masum2004">Masum and Zhang (2004)</a> outline a set of design goals for a general reputation system in society, leveraging off the new capabilities brought about by the web. Essentially, they argue for tools that enable the calculation and discovery of reputation, and a means to tie reputation to identity.
+            </p>
+            <p>
+                There are already quantitative reputation systems that operate within a limited scope. For example, eBay Feedback provides a means for sellers to rate buyers and vice-versa. Amazon also provides a mechanism whereby registered users can indicate whether they found another user's book review helpful or not. However, both of these reputation systems are open to tit-for-tat behaviour.
+            </p>
+            </li>
+            <li class="unnumbered-section"><h4>Science 2.0</h4>
+            <p>
+                In recent times there has been a noticeable trend towards open web-based publishing, accompanied by a number of <em>social</em> tools for researchers. The latter includes <a href="http://www.citeulike.org/" title="CiteULike: Everyone's library">CiteULike</a>, a reference sharing web site for scientists, and <a href="http://www.researchgate.net/">ResearchGATE</a>, which has been described as <a href="http://scienceroll.com/2008/05/23/facebook-for-scientists-going-live/" title="Facebook for Scientists: Going Live &laquo; ScienceRoll">Facebook for scientists</a>. The large publishers are coming online with their own social networking sites, including <a href="http://network.nature.com/" title="Nature Network">Nature Network</a> and <a href="http://www.2collab.com/" title="Home - 2collab">2Collab</a>. Even desktop reference managers such as <a href="http://www.zotero.org/" title="Zotero | Home">Zotero</a> and <a href="http://www.mendeley.com/" title="Mendeley - Academic software for research papers by Mendeley">Mendeley</a> take on a distinctly web 2.0 flavour (Zotero is integrated into the Firefox web browser and allows sharing of references with groups, while Mendeley enables collaborative annotation of research papers). The goal of most of these sites is to simplify research collaboration. They are not concerned with peer review or bibliometrics.
+            </p>
+            <p>
+                Some researchers <a href="http://vonahn.blogspot.com/2009/02/academic-publications-20.html" title="Luis von Blog: Academic Publications 2.0">have</a> <a href="https://lists.cs.columbia.edu/pipermail/tccc/2007-January/005298.html">suggested</a> that peer review could be accomplished, in part at least, by allowing the scientific community to <q>vote</q> on manuscripts in much the same way as users of <a href="http://digg.com/">Digg</a> vote on web pages. However, while these approaches may be a step in the right direction, they do not provide reviewer accountability, and are thus open to various forms of abuse.
+            </p>
+            <p>
+                Finally, others have proposed more flexible approaches to communicating scientific results using the web. For instance, Liquid Publications are mutable documents that can be updated as errors are found or when new results come to light (<a href="#Casati2007">Casati et al., 2007</a>). The process of creating Liquid Publications bears many similarities to the development of open source software.
+            </p>
+            </li>
+            </ol>
+            <p>
+                The research described in this paper builds on the works summarised above. In the next section, we discuss our approach in detail.
+            </p>
+        </div>
+    </li>
+
+    <li id="approach" class="section"><h3>Approach</h3>
+        <div>
+            <p>
+            In designing our method, we considered several properties to be essential, many of which are held over from traditional peer review:
+            </p>
+            <ol>
+               <li>Directed towards faster, more open modes of scientific communication and review, while retaining compatibility with traditional publishing models and peer review processes;</li>
+               <li>Lowers reviewing burden on peers, and increases <em>average</em> quality of papers submitted for review;</li>
+               <li>Provides a <em>leading</em> metric to quantitatively assess the research value of a manuscript;</li>
+               <li>Provides a means to quantitatively assess the publishing reputation of an author;</li>
+               <li>Provides a means to quantitatively assess the skill of reviewers in identifying valuable scientific results; and</li>
+               <li>Closely tied to the previous property, does not contain bias against young researchers and revolutionary (but scientifically sound) ideas.</li>
+           </ol>
+           <p>
+           These properties were derived as the result of focus groups, a structured survey conducted within the author's research institution and collation of the commonly aired misgivings aired by the research community<a href="#endnote-misgivings"><sup>3</sup></a>, and cross-validated through discussions with key stake-holders such as university vice-chancellors, funding bodies and program committee chairs.
+           </p>
+        <p>
+            A common argument against the removal of upfront peer review, a model that we might term <em>extreme open access</em>, is that the research community would be flooded with a high proportion of poor quality papers. The proportion of rejected papers from traditional peer reviews would seem to lend support to this claim. However, we also know that peer review has been responsible for rejecting papers that have, much later, either gone on to earn their authors a Nobel Prize, Fields Medal or similar, or established the groundwork for others to claim one of these prizes (for numerous examples in the field of economics, see Gans and Shepherd, 1994; in mathematics, a famous example is the rejection of Mordell's conjecture by the London Mathematical Society, a conjecture that was later proved by Falting and won him the Fields Medal). While the initial rejections may have helped to improve these works, the fact remains that the central thesis of these works were present in the original drafts. The rejections thus served to delay the dissemination of the valuable results at the heart of these manuscripts.
+        </p>
+        <p>
+            We need to find, then, a mechanism that enables the rapid dissemination of valuable scientific contributions, which also guards against a flood of less valuable manuscripts. One means for doing this is to require authors to stake some kind of collateral on their paper, which will be returned to them (with interest) if their confidence in the research contribution of the manuscript is vindicated by their peers. In so far as the collateral has some value to the authors, this design has the effect of making the authors ask themselves whether their manuscript is really of use to anyone, since they run the risk of losing the collateral if their peers judge the manuscript as having no research contribution. In the case that the authors decide the paper really is valuable, it can be disseminated very quickly. In the case where the authors decide the manuscript does not make a sufficient contribution in its current form, others are saved the task of reading and reviewing it.
+        </p>
+        <p>
+            To stand in as collateral, let us introduce a virtual currency, an equal amount of which is initially given to each researcher. To <q>submit</q> a paper, authors must stake a portion of their virtual tokens on each paper they submit. The authors can reclaim their tokens by <q>selling</q> a portion of the equity in the paper to their peers.
+        </p>
+        <p>
+            As in traditional peer review, the authors' peers provide comments and feedback, and an overall rating, such as a <em>strong accept</em> or <em>weak reject</em>. To simplify the scenario, let us for the moment assume three possible ratings: <em>strong accept</em>, <em>weak accept</em> and <em>abstain</em>. Unlike traditional peer review, the peers are now required to <em>back</em> their rating with their tokens. A strong accept costs 2 tokens, a weak accept costs 1 token and abstention costs nothing. A paper is accepted if some pre-defined threshold of tokens is bid (cumulatively) by the peers. If the threshold is not reached, the paper is rejected. Importantly, we have changed nothing in the traditional form of peer review except to require peers to back their overall rating with their (finite) tokens. In return for this backing, the peers receive a stake in the manuscript proportional to the value of their overall rating. Now, each time a future manuscript cites the manuscript the peer has backed, they receive a dividend payment in tokens, which provides the incentive for backing their rating with tokens in the first place. Though it is not crucial to the approach, we note here that the dividend is sourced from the "submission fee" paid by the authors of the future manuscript that cites the current manuscript. In other words, the dividend does not simply <em>materialise</em> out of thin air; rather, there is a closed loop of capital flow in this system.
+        </p>
+        <p>
+            We may generalise this approach by replacing the discrete ratings, <em>strong accept</em>, <em>weak accept</em> and <em>abstain</em>, with open-ended ratings, such that peers signal their opinion of the scientific worth of a paper by increasing or decreasing the price they are prepared to pay for a unit stake in a paper, or by increasing or decreasing the size of their stake in a paper. This generalisation does not change the fundamental operation of the mechanism described above. In effect, what we are suggesting here is a stock market-like system for research manuscripts, wherein peers purchase <em>shares</em> in the papers they wish to support. Their incentive for doing this, is the dividend payment they receive from future citations, and the opportunity to sell their shares at a higher price than that at which they were purchased. The approach thus aggregates the collective wisdom of peers in assessing the frequency with which a manuscript will be cited in the future. We contend that the probability of future citations is a legitimate proxy for manuscript quality since the value of the contribution in the manuscript is the primary information a researcher possesses to decide how many citations a paper will receive in the future. However, as noted by Meho (2007) the manuscripts of eminent researchers are often cited ceremonially, which could inflate the number of citations a manuscript would otherwise receive. We discuss this further in <a href="#conclusion">Section 6</a>.
+        </p>
+        <p>
+            In the above proposal, we make the simplification that negative reviews are signalled by abstention. In most cases we may retain this simplification since a peer's tokens are finite and the backing of one paper necessarily means a peer forgoes the opportunity to back another one. However, we can cater for negative reviews by introducing <em>short-selling</em> of shares in those cases where it is really required. However, for most circumstances, it is the relative rating of two papers that is really of interest. Therefore, it is enough that a peer backs one manuscript at the expense of another.
+        </p>
+        <p>
+            One aspect of our proposal that bears further discussion is the treatment of <em>negative citations</em>. We do not, in fact, treat negative citations any differently to positive or neutral ones, and nor is this required. If one paper cites another in a negative fashion, perhaps calling into question one of the conclusions in the earlier paper, it is true that the shareholders of that paper will receive a small dividend from that citation. If the research community comes to the consensus that the result in the earlier paper really is incorrect, this paper begins to be cited less frequently, which places downward pressure on the share price of that paper. An incorrect result can be pointed out only so many times before doing so becomes pointless (Garfield, 1979, p. 244).
+        </p>
+        <p>
+        We have now described the basic design of our mechanism for peer review. For clarity, we summarise our approach here.
+        </p>
+        <ul>
+            <li>We introduce a virtual currency with each researcher (participant) initially receiving an equal amount of this currency;</li>
+            <li>Participants can submit manuscripts at a fixed cost per manuscript, and receive a fixed number of shares in return for this that they can sell to other participants;</li>
+            <li>Participants can purchase shares in manuscripts; and</li>
+            <li>Each time a paper (<em>A</em>) is cited by a new paper (<em>B</em>), the shareholders of <em>A</em> receive a dividend, paid out of the submission fee for <em>B</em>.
+        </ul>
+        <p>
+        It is important to note that this method is derived from the existing common approach to peer review, except that there is now a cost for submission, and peers must back their reviews with a portion of their finite tokens.
+        </p>
+
+        </div>
+    <li id="properties" class="section"><h3>Properties of the Approach</h3>
+        <div>
+        <p>
+            Our method has several useful properties. Interestingly, some of the more useful properties were not designed into the mechanism, but emerged as a by-product of the design.
+        </p>
+        <p>
+           The first property is that authors now have a strong incentive to carefully review their work, or ask their colleagues for thorough feedback, prior to wider dissemination. The reason for this is that if the authors are unable to sell a sufficient portion of the shares that are created as a result of their submission, they will be unable to recover the cost of submission. If their peers believe the work is valuable and will therefore be cited frequently, then the shares will be sold and the cost recovered. This provides a benefit to researchers by filtering out poor and mediocre papers, allowing researchers to spend more of their time on other aspects of conducting research. When used in conjunction with traditional journal or conference peer reviews, the submission cost is also likely to reduce the occurrence of <em>recycled</em> submissions, whereby a paper rejected from one venue is re-submitted to another with few or no changes. The pursuit of this publishing strategy will quickly result in the authors' "bankruptcy".
+        </p>
+        <p>
+            Another property is that peers have a strong incentive to back only those papers they believe contain important science, because it is these papers that become highly cited. While it is true that some of the most important scientific manuscripts see the number of citations tailing off at some point, it takes some years for this effect to occur. This effect occurs when the science contained in the manuscript becomes integrated into the common knowledge of a field. However, at the time of publication, it is difficult to tell whether a manuscript is so valuable that it will become one of these rare papers. Thus, from a peer's point of view, the best indicator of a paper's future citation rate is still its value to the research community (ceremonial citations notwithstanding), as judged by the peer.
+        </p>
+        <p>
+            Conveniently, the likelihood of future citations of a paper, as assessed by the community of peers, is reflected in the <em>current</em> share price of the paper. Unlike existing bibliometric indicators such as <em>h</em> index, citation counts and PageRank<sup>&trade;</sup>, this is a non-monotonically increasing metric, and it is a <em>leading</em> metric. Thus, if a theory is proved or disproved, or a study is later found to have been carried out with less than due regard for the scientific method and so on, our rating corrects itself when this information comes to light. Any such metric is bound to be more volatile than lagging metrics. However, it is, perhaps, the overall trend of our indicator that is of most importance to funding agencies and so forth. Furthermore, we do not propose that this metric be used in isolation of existing metrics. Rather, it is a metric that fills an important gap in the current range of bibliometric statistics. The prices of shares in all manuscripts within a given research area can be aggregated to see how that area has fared over time. Comparisons may also be made across research fields, though it would be meaningless to do straight comparisons of the raw data due to the different citation cultures, publication rates and numbers of researchers in those fields.
+        </p>
+        <p>
+            A participant's <em>publishing and reviewing reputation</em> is reflected in the value of their <em>portfolio</em> of shareholdings and accumulated tokens. Usefully, the proportion of their reputation that is due to authorship of valuable science can be separated easily from the proportion due to their ability to identify valuable science. As far as we know, this is the first quantitative measure of reviewing reputation. The set of researchers responsible for the authorship of valuable research is not necessarily the same as the set of researchers skilled in identifying valuable research. In fact, history shows that is often those researchers who have gained a strong publishing reputation who are responsible for (wrongly) rejecting groundbreaking new research. As such, the identification of valuable science is an important skill that deserves recognition. Currently, reviewers receive no real credit for performing the task of peer review well, and there is little accountability in the process. Our approach makes progress on both these counts. A researcher's reviewing reputation is, presumably, of more interest than their publishing reputation to an editorial board or program committee.
+        </p>
+        <p>
+            The method also produces a valuable side-effect that we did not design for: the indicator introduced by our approach is resistant to citation collusion. As such, in so far as the metric introduced by our approach is adopted by funding agencies and employers to aid in their evaluation of research, citation collusion produces no benefit for researchers. To see why this is the case, take any subset of participants in the system. This subset of participants may engage in citation collusion, but this merely shifts tokens amongst themselves without increasing the sum total of tokens. The only way for this group to achieve an increase in the sum total of their tokens is if participants outside of this subset cite or purchase shares in their papers.
+        </p>
+        <p>
+            Note also that share swap agreements, in which two or more parties agree to purchase shares in each others' papers at inflated prices, are also ultimately doomed to failure, though they can be used to temporarily increase the current share price of a paper. Although it is possible for a participant to bid an arbitrarily large figure on a share of a manuscript, they are likely to do so only if they are confident of receiving dividends in keeping with their bid price, and subsequently, that they could close out this position by selling their share at the same (or higher) price. Otherwise, they find themselves in a losing position, wherein either they must sell their share at a lower price than that at which they purchased it, or their tokens are locked into this share, and they must forgo the opportunity to put those tokens towards purchasing shares in other manuscripts or submitting their own publication. In other words, at the instant a participant pays more for a share than the community of peers (that is, the market) values that share, they are in a losing position. This holds in the case of collusion, as well as the case where a researcher mistakenly over-values the contribution to the research community of a manuscript.
+        </p>
+        <p>
+            Another property of this approach is transparency. A scientist or manuscript has a particular rating because it is the aggregated score given by the research community. Furthermore, each researcher is accountable for the ratings they give because the act of providing a score has an effect on their own rating. Transparency is an important aspect of any rating system, since it is difficult to trust ratings that emerge from a black-box process, or some complex algorithm. Our mechanism is neither algorithmic in concept nor reliant upon secretiveness.
+        </p>
+        </div>
+    </li>
+
+    <li id="uses" class="section"><h3>Uses Within Scientific Publishing</h3>
+        <div>
+        <p>
+            In this section we enumerate some of the ways in which the metric introduced by this paper can be used within the realm of scientific research.
+        </p>
+        <p>
+            In assessing project proposal and grant applications, funding agencies consider many factors in coming to decisions about whom to fund. These factors range from qualitative <em>real-world</em> impact measures to quantitative publication metrics. None of these factors is sufficient in isolation to come to a reasonable decision. However, in many fields of research, particularly those in which the primary outcomes are encoded within research manuscripts, publication metrics are a key statistic in assessing research quality. As previously mentioned, these statistics are usually trailing metrics. Missing from the research assessor's toolbox is a leading metric that gives some indication of the research community's current valuation of a researcher's work. In this manuscript we have introduced such a metric, which can be used in conjunction with existing trailing metrics to give funding agencies a more complete picture of the quality of research emerging from a particular group.
+        </p>
+        <p>
+            In applying for grants, researchers will often have already conducted some preliminary work which can be used to support the funding proposal, or they may have published "technical reports", "workshop papers" or "works-in-progress", which contain the seed of their idea. Currently used trailing metrics are of little use to funding bodies, because they will not provide any information about what a researcher's peers think about this contemporary line of scientific inquiry, simply because the work is too new. A leading metric, such as we have described, on the other hand, may have much value to funding bodies, because it does not require the accumulation of citations before useful information is revealed. Only a short period of time need pass, enough for some trading of shares in the relevant papers to have taken place, before these manuscripts acquire a value, determined collectively by the community of peers. The advantages this has over traditional peer review (or "expert review" in the case of some research grant proposal assessments) is that it taps a potentially much larger number of "reviewers", and aggregates their collective opinion.
+        </p>
+        <p>
+            Furthermore, employers may be interested in knowing what the research community thinks about the recent research conducted by a prospective employee. While <em>h</em> index, <em>g</em> index, PageRank<sup>&trade</sup> and citation counts can give a cumulative indication of a researcher's past performance, these metrics are not responsive to recent events. Our metric gives employers the possibility to weigh off contemporary achievements against historical ones. We do not claim that our metric is <em>superior</em> to existing trailing metrics, merely that our metric is a useful addition to the employer's toolkit, because it throws some light on an aspect of research performance that was previously in the shadows.
+        </p>
+        </div>
+    </li>
+
+    <li id="implementation" class="section"><h3>Implementation</h3>
+        <div>
+            <blockquote cite="http://vonahn.blogspot.com/2009/02/academic-publications-20.html">
+                Can a combination of a wiki, karma, and a voting method like reddit or digg substitute the current system of academic publication?
+                <p class="quote-attribution">
+                             &#8212;<a href="http://www.cs.cmu.edu/~biglou/" title="Luis von Ahn's Home Page">Professor Luis von Ahn, CMU</a> in a recent <a href="http://vonahn.blogspot.com/2009/02/academic-publications-20.html" title="Luis von Blog: Academic Publications 2.0">weblog article</a>.
+                </p>
+            </blockquote>
+        <p>
+        We have implemented<a href="#endnote-rails"><sup>4</sup></a> the mechanism described above in a proof-of-concept web site, called <a href="http://citemine.com/" title="Citemine"><em>Citemine</em></a>. Citemine is a web-based exchange for researchers, who may upload manuscripts, and buy and sell shares in those manuscripts.
+        </p>
+        <p>
+            Before commencing the development of our implementation, we ran two focus groups with a combined total of thirteen anonymous participants drawn from various fields of science and social science. The majority of participants were aged under forty. The purpose of the focus groups was to qualitatively assess the participants' understanding of the underlying mechanism, and to determine an appropriate form for the implementation. The participants were given a five minute introduction to the mechanism described in this paper. The explanation did not include a description of the properties held by the mechanism. In order to gain some insight into the participants' level of comprehension of the concept, the participants were then given ten minutes to write down any properties of the mechanism (both positive and negative) that were immediately obvious to them. Eight of the thirteen participants responded to this task with at least one of the properties listed in Section <a href="#properties">4</a> above. Several participants responded with more than three. Transparency and incentive for self-review were commonly suggested. Several participants also raised the problem of researcher identification. In particular, how does one prevent a malicious participant from gaming the system by submitting work or buying and selling shares as several fictitious researchers? The identification of these properties by the participants indicates a fairly high level of understanding of the underlying mechanism. This can, perhaps, be attributed to the mechanism's similarity to other market systems with which the participants would be familiar. The remainder of the time in the focus groups was used to complete a questionnaire that helped us decide how the system should be implemented, and what features the implementation should eventually provide. All participants responded that the system should be implemented as a web site. The alternatives were a desktop or an application within <a href="http://www.facebook.com/" title="Facebook">Facebook</a>.
+        </p>
+        <p>
+            To participate in Citemine, researchers sign up for an account, at which point they are allocated 1000 tokens. In Citemine, the currency is called the <em>Real</em>, after real numbers, not after the currency of Brazil. These reals (the currency symbol for the real is <span class="reputation_symbol">&real;</span>) can be used to publish manuscripts or purchase shares in other manuscripts. Submissions cost <span class="reputation_symbol">&real;</span>100, and this is split evenly amongst the authors. There are two basic kinds of manuscript in Citemine: <em>prospect</em> and <em>retrospective</em>. Prospect manuscripts are manuscripts that have not yet been formally published elsewhere. They can be technical reports, pre-prints, drafts and so on. A version of these manuscripts may later be published in a journal or conference proceedings. Retrospective manuscripts, on the other hand, are papers that have already been formally published. Retrospective papers can be added by anyone, and they can later be claimed by their authors at the usual submission price.
+        </p>
+        <p>
+            At the current time, Citemine supports PDF documents and HTML-based manuscripts.<a href="#endnote-example"><sup>5</sup></a> PDF documents are manually uploaded to the site by the user, while for HTML-based documents the user need only provide the URL of that document. In addition, Citemine crawls e-prints repositories that support the <a href="http://www.openarchives.org/" title="Open Archives Initiative">Open Archives Initiative</a> metadata harvesting protocols. During beta-testing we limit this harvesting to a small set of providers, including <a href="http://arxiv.org/">arXiv.org</a> and the <a href="http://espace.library.uq.edu.au/" title="Home - UQ eSpace">University of Queensland eSpace repository</a>. This process enables us to pre-populate Citemine with bibliographic data. Citemine participants can also insert bibliographical data for a manuscript without uploading the full text of the manuscript itself. A URL or DOI can be added to the record for the manuscript, which links to the authoritative full-text version of the manuscript. Citemine also accepts pre-prints and other sorts of previously unpublished material.
+        </p>
+        <p>
+        Depending on copyright restrictions, the full-text of the manuscript may or may not be retained by the system. In the case that copyright restrictions prevent the full-text being offered by Citemine, bibliographic data, including the title, authors and citations, is extracted from manuscript before the full-text is discarded.
+        </p>
+        <p>
+            Citemine applies automated citation parsing (Lawrence et al, 1999) to extract the citations from PDF documents, and expects HTML-based manuscripts to use the COinS "standard" for identifying references.<a href="#endnote-coins"><sup>6</sup></a> It is on the basis of these citations that Citemine allocates dividends to shareholders as described in Section <a href="#approach">3</a>.
+        </p>
+        <p>
+            For each manuscript, we create a forum, in which written feedback can be provided to the authors of the paper, and in which debate can take place. We are experimenting with various kinds of forum. For example, to encourage concise comments on specific aspects of a manuscript, we are implementing a <em>ticketing</em> system similar to those used to track tasks within software development teams and help-desk systems. Each ticket can be categorised as a simple problem (such as a spelling or typing error), a more major kind of problem to do with the scientific content, or praise. We believe this sort of feedback will be more helpful to authors than lengthy, monolithic reviews. The system should also help to limit duplicated feedback from multiple participants.
+        </p>
+        <p>
+            Our implementation allows for, but does not mandate, so called <a href="http://project.liquidpub.org/" title="Liquid Publications: Scientific Publications meet the Web &mdash; LiquidPub Project"><em>Liquid Publications</em></a>, which are manuscripts that can be updated to reflect new findings or to correct errors and omissions. We note our rating mechanism is ideally suited to such publications. If a change is made to a publication which the peer community deems to improve the publication, an upward adjustment in the share price should be expected. If a modification is made to a publication which the peer community deems to detract from the publication, a downward adjustment in the share price should be expected. These mutable publications take advantage of the benefits that digital publishing brings. In the current implementation, the citations made by a manuscript must remain fixed (after a short initial "drafting" period), since the citations are the basis for the payment of dividends. Also, Citemine delegates the task of version control to the authors; that is, we have not yet implemented a version control system for the manuscripts that are inserted into Citemine.
+        </p>
+        <p>
+            In the event that Citemine gains traction within the research community, thereby accumulating a critical mass of data, it will be able to offer researchers a novel search mechanism, in which search results are ordered by their share price (for manuscripts) or portfolio value (for researchers). Thus, important new scientific results can be quickly integrated into the working body of knowledge. Valuable research is discovered quickly, and there is no bias towards older (and, therefore, more highly cited) work. Rather, it is the value of the scientific content of a manuscript, as determined by the community of researchers, that determines whether it appears near the top or bottom of a set of search results.
+        </p>
+        <p>
+            Citemine does not monitor insider trading. In fact, we encourage it. Let us consider the circumstances under which insiders have an advantage. The authors of a study are presumably in the position best placed to later find flaws in this study. If such flaws are found, or if they conduct another study that refutes the findings of the initial study, then the authors will have a <em>first mover</em> advantage in unloading the shares in the paper that reports the results of the initial study, placing downward pressure on the share price of that paper. This is precisely what we want to happen. Allowing this sort of insider trading expedites the flow of information in the market. Furthermore, it incentivizes the authors to correct their own erroneous findings. While insider trading can impart a small advantage to the authors of a paper, we believe the benefits far outweigh the costs. The foremost goal of Citemine is to expedite the dissemination of valuable research, and to allow researchers to find this research quickly; encouraging insider trading in this context can only help to serve that goal.
+        </p>
+        <p>
+            At the present time, Citemine does not allow short selling. That is, one cannot sell shares that they do not own. In addition, participants cannot borrow reals from other participants or from the system itself. However, in the case that a participant has somehow managed to spend all their reals and therefore cannot afford to submit a manuscript they have just written (in other words, if they are bankrupt), they are free to convince their colleagues of the value of this new paper, and have these colleagues foot the bill for submission.<a href="#endnote-bankrupt"><sup>7</sup></a> Thus, even participants whose "bank balance" is currently very low have a means to submit manuscripts.
+        </p>
+        <p>
+            One problem faced by Citemine is the possibility that malicious users could create fake accounts that are used to direct reals to certain other accounts. The problem is that the reputation of these fake accounts is of no consequence, and so a malicious user can submit manuscripts that contain no scientific content, but which cite the work of the malicious user's friends and colleagues, as well as the work submitted under the malicious user's <em>actual</em> account. We believe that the prospect that one could be caught playing this game is a strong deterrent, since it may have disciplinary ramifications far beyond Citemine's system of reputation and rankings.
+        </p>
+        <p>
+            A potentially more damaging scenario is one in which <em>non-researchers</em> join Citemine, and commit the same kind of offences described above. In this case, the malicious user is not deterred by the prospect of being caught, as their research reputation is of no consequence to them. At present, Citemine does not guard against this malicious use. However, there are several partial solutions to the problem, which we may choose to implement in the future. By making Citemine participation by invitation only, we can restrict participation to the peers of those participants already using the system. The trail of invitations can be used to trace back to the person who invited a user who turns out to be malicious, and investigations can be launched from there. A second approach is to levy a fee (in real-world currency such as US dollars) for participation in Citemine. This should provide a barrier to entry to illegitimate participants. Both of these approaches may adversely affect participation numbers.
+        </p>
+        <p>
+            Citemine currently encapsulates only the core mechanism described in this paper. We are in the process of implementing features that add value to the basic concept. These include an updated search engine that considers aspects other than share price when ranking search results, the ability for participants to add their own tags (keywords) to manuscripts written by other researchers, and a manuscript recommendation system that suggests personalised reading material for each participant.
+        </p>
+        </div>
+    </li>
+
+    <li id="conclusion" class="section"><h3>Conclusion and Future Work</h3>
+        <div>
+    <p>
+        In this paper we have described the design and early implementation of a trading system for research manuscripts that aims to increase efficiencies in science communication. A product of the method described is a potentially useful leading metric that gives a direct indication of the research community's valuation of a manuscript and its authors. We show how this method can be derived from traditional peer reviewing processes, and then show how the method can be generalised to a stock exchange-like system. The method has several interesting properties, including providing incentives for thorough self-review, providing incentives to peer researchers to back only those papers likely to be frequently cited in the future regardless of who has written these papers, and the emergence of a metric resistant to citation collusion. We note, again, that the metric introduced by our method is not intended to be used in isolation from other measures of research impact; rather, it is a metric that provides a different vantage point from which to assess research quality. The method has been implemented in the form of Citemine, a web-based exchange for scientific manuscripts.
+    </p>
+    <p>
+        There is much scope for future research and implementation work. We describe here several lines of work we are pursuing or wish to pursue.
+    </p>
+    <p>
+        This paper has described the operation of our market mechanism informally, which has the benefit of being widely understood. However, an informal formulation does not enable us to easily answer questions such as <q>what happens if we change the cost of manuscript submission?</q> and <q>how does our mechanism compare with existing mechanisms used in other sorts of markets?</q> A formal mathematical description will allow us to find answers for these questions. A simple first step would be to define a discounting formula that gives a fair price for shares in a given manuscript based on the number of citations it is expected to receive.
+    </p>
+    <p>
+        An obvious addition to the system just described is the introduction of derivative securities. During our focus groups, one concern of the participants was that it is not possible to signal support for a researcher except through the act of purchasing shares in their manuscripts. One possible way to overcome this problem is to introduce <em>researcher futures</em> on top of the basic market described in this paper. These futures would be, in essence, a prediction market for divining the future publishing and reviewing reputation of the participants in the system, thereby adding another instrument to the toolkit of those wishing to assess research quality.
+    </p>
+    <p>
+        We are in the process of adding to Citemine the ability to co-ordinate traditional peer review processes. It is important to note that the mechanism described in this paper is not mutually exclusive to traditional peer review; in fact, we believe our method can play an important role for conference program committees and journal editorial boards. Conferences and journals typically receive many more papers than they can accept. Top conferences in computer science, for example, maintain acceptance rates in the low teens (or even less). The peer review process can be coupled with Citemine to reduce the number of submitted papers, thereby reducing reviewing burden. Upon submission to a publishing venue via Citemine, the authors must pay the submission cost (in reals). They will do this only if they believe there is a strong chance of their paper being accepted by the publishing venue. After the traditional peer review is carried out, the paper can be traded in Citemine like any other. The authors of papers that were rejected by the traditional peer review have the option of leaving a copy of their paper on Citemine as a pre-print or technical report, which may then be traded as usual.<a href="#endnote-compare"><sup>8</sup></a>
+    </p>
+    <p>
+        In this paper we have focused on the application on the underlying mechanism to scientific publishing. We are investigating the potential for applying the mechanism to other domains. Perhaps our first task is to identify the set of domains that bear the characteristics that make them amenable to the mechanism described in this paper. Essentially, the mechanism requires a set of entities that reference each other in some way, and where we wish to ascertain the quality of these entities and the providers of these entities (where quality defined in a domain-specific manner). One such domain that we have already identified is web search, or search within any subset of the web such as the blogosphere or news web sites. Search engines typically use a number of algorithms to decide upon the order of results shown to the end user, and each of these algorithms is given a weight, which controls how strongly the algorithm affects the overall result. The algorithms include eigenvector centrality measures such as PageRank<sup>&trade;</sup>, term frequency, term location and methods that take user feedback into account (using, for example, artificial neural networks). The idea of <q>social search</q> or <q>search 2.0</q> is also gaining momentum. This concept involves having humans in the (search) loop. It encompasses approaches in which users can customise their search results (for example, <a href="http://rollyo.com/" title="Rollyo: Roll Your Own Search Engine">Rollyo</a>), and where the results are influenced by one's social network through analysis of shared <q>bookmarks</q> (for example, <a href="http://www.gravee.com/" title="Gravee - The Social Search and Recommendation Engine">Gravee</a>) and so on. However, we are not aware of any search engine, traditional or social, that takes predictive metrics, such as the one described in this paper, into account. By incorporating our metric, which is calculated by the <em>wisdom of the crowd</em>, search engines could deliver results that are more attuned to what is important <em>right now</em>. Importantly, documents need not wait for months or years to accumulate inbound links before being identified as a high-quality document. We currently apply this method of ordering search results within Citemine.
+    </p>
+    <p>
+        Another potential use is in distributed computing, where applications are often composed of multiple, loosely coupled objects or services. The composition of these services is achieved through <em>object references</em>, which are analogous to citations in manuscripts or hyperlinks in the web. As such, there is scope for investigating the extent to which our method can be applied in this domain. In these sorts of environments it is often difficult to assess the quality of services and the reputation of the service providers. It is a problem of <em>trust</em>. We will investigate the possibility of applying our method to the problem of trust and reputation in distributed computing environments. We have a particular interest in applying this work to <em>ubiquitous computing</em> (which goes by other names such as <em>pervasive computing</em>, <em>Everyware</em> and the <em>Internet of Things</em>), in which many distributed computing problems arise, including the problem of trust.
+    </p>
+    <p>
+        There are some problems in scientific publishing that our approach does not address. Among these is the problem of <em>honorary authorship</em>, whereby eminent professors are appended to the list of authors on a manuscript, regardless of whether or not they contributed to the scientific content. Our implementation at least encourages these honorary authors to carefully review the works to which they put their name, since as an author they must pay a portion of the submission cost. Another problem that our mechanism does not overcome is <em>ceremonial citations</em>, whereby an author will cite the works of an influential researcher for no valid reason. A potential solution to this problem might be to link the cost of submission to the number of citations, thereby encouraging authors to cite only relevant work. This may have the undesired side-effect of encouraging authors to omit even the relevant citations; however, there is an opposing force in play here: peer researchers may be reluctant to support a paper that does not contain the necessary citations, therefore detracting from the share price of that paper. Clearly, these subtleties require deeper investigation, that will be aided by a formal model.
+    </p>
+    <p>
+        In conclusion, we encourage researchers to take advantage of the significant benefits that open web-based publishing offers. Citemine, we believe, makes it possible to harness the rapid dissemination of scientific knowledge afforded by the web, while retaining a high degree of quality control and injecting a measure of accountability for authors and their peers. It is our hope that Citemine, and other related efforts, will encourage researchers towards a new, more open, model of science communication. We note, finally, that others are beginning to think along similar lines (most notably Crowcroft et al., 2009), which we choose to interpret as a sign that our proposal is something more than a mere thought experiment.
+    </p>
+    </div>
+    </li>
+
+    <li id="acknowledgements" class="unnumbered-section"><h3 class="unnumbered-head">Acknowledgements</h3>
+        <div>
+    <p>
+        Since the conception of the idea presented in this paper during the latter months of 2005, a great many people have provided help in various forms, and I gratefully acknowledge their contributions here.
+    </p>
+    <p>
+        First, there are number of people at <a href="http://nicta.com.au/" title="NICTA | Home">NICTA</a> I wish to thank. Jonathan Thompson has done the bulk of the Citemine implementation. His work is ongoing. I am indebted to many within the NICTA leadership team who allowed me to pursue this idea despite its tenuous relevance to my <q>day job</q>. In particular Chris Scott provided comments and feedback when this idea was in its infancy, and his support was crucial in securing funding for this <q>project</q>. <a href="http://www.linkedin.com/in/michelrosa" title="Michel Rosa - LinkedIn">Mike Rosa</a> helped to refine the form of our implementation, and was among the first to begin thinking of applications for our mechanism beyond academic publishing. I am thankful to many other colleagues at NICTA and affiliated organisations, including <a href="http://www.cs.bham.ac.uk/~grettonc/" title="Charles Gretton's home page at University of Birmingham">Charles Gretton</a> (now at the University of Birmingham), <a href="http://www.linkedin.com/in/paulhoff" title="Paul Hoff - LinkedIn">Paul Hoff</a>, <a href="http://www.itee.uq.edu.au/~jaga/" title="Prof Jadwiga Indulska">Jadwiga Indulska</a>, <a href="http://www.linkedin.com/in/brianmenzies" title="Brian Menzies - LinkedIn">Brian Menzies</a>, <a href="http://www.informatik.uni-freiburg.de/~srichter/" title="Homepage Silvia Richter">Silvia Richter</a>, <a href="http://www.itee.uq.edu.au/~conrad/" title="Conrad Sanderson - personal page">Conrad Sanderson</a>, <a href="http://www.markstaples.com/" title="Mark Staples">Mark Staples</a>, <a href="http://thebootstrap.blogspot.com/" title="The Bootstrap">Jim Steel</a> (now at Queensland University of Technology), <a href="http://axiom.anu.edu.au/~williams/" title="Bob Williamson (Robert C. Williamson)">Bob Williamson</a> and <a href="http://nicta.com.au/people/wishartr" title="NICTA | Ryan Wishart">Ryan Wishart</a> (now at Imperial College, London) for their insightful comments.
+    </p>
+    <p>
+        Second, there were many outside of NICTA who helped to improve this manuscript. <a href="http://henricksen.id.au/about/" title="About at henricksen.id.au">Karen Henricksen</a> encouraged me to pursue this idea, and provided objective criticism on a daily basis. She also provided feedback on early drafts of this article. <a href="http://www.erisian.com.au/wordpress/" title="inamerrata">Anthony <q>AJ</q> Towns</a> provided reams of comments and suggestions (including the notion of a discounting formula), which prompted many changes to the original drafts. His in-depth understanding of the underlying mechanics of the proposed solution proved invaluable, and I am most thankful to him. I must also thank <a href="http://www.cl.cam.ac.uk/~jac22/" title="Jon Crowcroft's Personal Home Page">Jon Crowcroft</a>, <a href="http://www.mbs.edu/home/jgans/" title="Joshua Gans' Home Page">Joshua Gans</a>, <a href="http://michaelnielsen.org/" title="Michael Nielsen &raquo; Michael Nielsen">Michael Nielsen</a> and <a href="http://www.okaneassociates.com.au/MOK_details.html" title="Mary O'Kane">Mary O'Kane</a> who asked insightful questions and directed me to related efforts, many of which are cited in the text.
+    </p>
+    <p>
+        I also extend my gratitude to the anonymous focus group and survey participants, who willingly gave of their time to help shape our implementation, and who suggested a number of potential features and extensions to Citemine.
+    </p>
+    <p>
+        Any errors that remain in this manuscript are my own, and none of those whom have been acknowledged above bear any responsibility for those errors.
+    </p>
+    <p>
+        NICTA is funded by the Australian Government as represented by the Department of Broadband, Communications and the Digital Economy and the Australian Research Council through the ICT Centre of Excellence program; and the Queensland Government.
+    </p>
+    </div>
+    </li>
+
+    <li id="endnotes" class="unnumbered-section"><h3 class="unnumbered-head">Endnotes</h3>
+        <div>
+        <ol>
+            <li id="endnote-cost">
+                This manuscript is not the place to debate public policy, but we note that <em>someone</em> is paying for the production of these unread manuscripts.
+            </li>
+            <li id="endnote-patent">
+                There is a patent pending on the method described in this paper: <a href="http://www.wipo.int/pctdb/en/wo.jsp?WO=2008058318" title="(WO/2008/058318) ACCEPTING DOCUMENTS FOR PUBLICATION OR DETERMINING AN INDICATION OF THE QUALITY OF DOCUMENTS">(WO/2008/058318) ACCEPTING DOCUMENTS FOR PUBLICATION OR DETERMINING AN INDICATION OF THE QUALITY OF DOCUMENTS</a>. The method was first disclosed in 2006 as Australian Provisional Patent Application 2006906442.
+            </li>
+            <li id="endnote-misgivings">
+                For a few of the more interesting discussions on this topic, see: Gans and Shepherd (1994); numerous articles on Michael Nielsen's weblog, including <a href="http://michaelnielsen.org/blog/?p=531" title="Michael Nielsen &raquo; Three myths about scientific peer review"><em>Three myths about scientific peer review</em></a>; Luis von Ahn's weblog article <a href="http://vonahn.blogspot.com/2009/02/academic-publications-20.html" title="Luis von Blog: Academic Publications 2.0"><em>Academic Publications 2.0</em></a>; and the long, but stimulating, <a href="https://lists.cs.columbia.edu/pipermail/tccc/2007-January/005254.html">thread of messages</a> on the <a href="http://www.comsoc.org/~tccc/" title="Computer Communications">IEEE Communications Society Technical Committee on Computer Communications</a> mailing list.
+            </li>
+            <li id="endnote-rails">
+                Citemine is implemented in the <a href="http://rubyonrails.org/" title="Ruby on Rails">Ruby on Rails</a> web programming framework.
+            </li>
+            <li id="endnote-example">
+                This document is an example HTML-based manuscript that can be added to Citemine.
+            </li>
+            <li id="endnote-coins">In the case of HTML documents, we could treat hyperlinks as citations, <em>a la</em> PageRank<sup>&trade</sup>. However, many works do not have a web version, and therefore cannot be identified by a hyperlink. Furthermore, HTML-based manuscripts may include links to materials that are not intended to be formal citations. Therefore, in our current implementation of Citemine, we have chosen to support HTML-based manuscripts (plain web pages and weblog articles), but we restrict them to conform to traditional scientific publishing standards in which a formal list of references appears at the end of the document. Rather than relying on our automated citation parsing algorithm, we require these references to be marked up used the COinS standard, which can be easily achieved using a tool like <a href="http://www.zotero.org/" title="Zotero: The Next-Generation Research Tool">Zotero</a> or an online <a href="http://generator.ocoins.info/" title="COinS Generator">COinS generator</a>.
+            </li>
+            <li id="endnote-bankrupt">
+                We are still implementing this feature. We do not expect anyone to exhaust their supply of reals in the near future!
+            </li>
+            <li id="endnote-compare">
+                It would be interesting to compare the performance of the accepted papers and the rejected ones!
+            </li>
+        </ol>
+        </div>
+    </li>
+
+    <li id="references" class="unnumbered-section"><h3 class="unnumbered-head">References</h3>
+        <div style="line-height:1.1em;margin-left:0.5in;text-indent:-0.5in;">
+        <p style="margin:0" id="Bergstrom2008">Bergstrom, Carl T., Jevin D. West, and Marc A. Wiseman. 2008. The Eigenfactor Metrics. <span style="font-style:italic;">J. Neurosci.</span> 28, no. 45 (November 5): 11433-11434. doi:10.1523/JNEUROSCI.0003-08.2008. <a href="http://www.jneurosci.org/">http://www.jneurosci.org</a>. <span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rft_id=info%3Adoi/10.1523/JNEUROSCI.0003-08.2008&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=The%20Eigenfactor%20Metrics&amp;rft.jtitle=J.%20Neurosci.&amp;rft.volume=28&amp;rft.issue=45&amp;rft.aufirst=Carl%20T.&amp;rft.aulast=Bergstrom&amp;rft.au=Carl%20T.%20Bergstrom&amp;rft.au=Jevin%20D.%20West&amp;rft.au=Marc%20A.%20Wiseman&amp;rft.date=2008-11-05&amp;rft.pages=11433-11434">&nbsp;</span></p>
+        <p style="margin:0em 0 0 0" id="Brin1998">Brin, Sergey, and Lawrence Page. 1998. The anatomy of a large-scale hypertextual Web search engine. <span style="font-style:italic;">Proceedings of the seventh international conference on World Wide Web 7</span>: 107-117. <a href="http://portal.acm.org/citation.cfm?id=297805.297827&amp;coll=GUIDE&amp;dl=GUIDE&amp;CFID=35720789&amp;CFTOKEN=54521891">http://portal.acm.org/citation.cfm?id=297805.297827&amp;coll=GUIDE&amp;dl=GUIDE&amp;CFID=35720789&amp;CFTOKEN=54521891</a>. <span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=The%20anatomy%20of%20a%20large-scale%20hypertextual%20Web%20search%20engine&amp;rft.jtitle=Proceedings%20of%20the%20seventh%20international%20conference%20on%20World%20Wide%20Web%207&amp;rft.aufirst=Sergey&amp;rft.aulast=Brin&amp;rft.au=Sergey%20Brin&amp;rft.au=Lawrence%20Page&amp;rft.date=1998&amp;rft.pages=107-117">&nbsp;</span></p>
+        <p style="margin:0em 0 0 0" id="Casati2007">Casati, Fabio, Fausto Giunchiglia, and Maurizio Marchese. 2007. Liquid Publications: Scientific Publications meet the Web (December 1). <a href="http://eprints.biblio.unitn.it/archive/00001313/">http://eprints.biblio.unitn.it/archive/00001313/</a>. <span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Liquid%20Publications%3A%20Scientific%20Publications%20meet%20the%20Web&amp;rft.aufirst=Fabio&amp;rft.aulast=Casati&amp;rft.au=Fabio%20Casati&amp;rft.au=Fausto%20Giunchiglia&amp;rft.au=Maurizio%20Marchese&amp;rft.date=2007-12-01">&nbsp;</span></p>
+        <p style="margin:0em 0 0 0" id="Crowcroft2009">Crowcroft, Jon, S. Keshav, and Nick McKeown. 2009. Scaling the academic publication process to internet scale. <span style="font-style:italic;">Commun. ACM</span> 52, no. 1: 27-30. doi:10.1145/1435417.1435430. <a href="http://portal.acm.org/ft_gateway.cfm?id=1435430&amp;type=html&amp;coll=GUIDE&amp;dl=GUIDE&amp;CFID=35815892&amp;CFTOKEN=46798548">http://portal.acm.org/ft_gateway.cfm?id=1435430&amp;type=html&amp;coll=GUIDE&amp;dl=GUIDE&amp;CFID=35815892&amp;CFTOKEN=46798548</a>. <span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rft_id=info%3Adoi/10.1145/1435417.1435430&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Scaling%20the%20academic%20publication%20process%20to%20internet%20scale&amp;rft.jtitle=Commun.%20ACM&amp;rft.volume=52&amp;rft.issue=1&amp;rft.aufirst=Jon&amp;rft.aulast=Crowcroft&amp;rft.au=Jon%20Crowcroft&amp;rft.au=S.%20Keshav&amp;rft.au=Nick%20McKeown&amp;rft.date=2009&amp;rft.pages=27-30">&nbsp;</span></p>
+        <p style="margin:0em 0 0 0" id="Dasgupta1994">Dasgupta, Partha, and Paul A. David. 1994. Toward a new economics of science. <span style="font-style:italic;">Research Policy</span> 23, no. 5. Research Policy: 487-521. <a href="http://ideas.repec.org/a/eee/respol/v23y1994i5p487-521.html">http://ideas.repec.org/a/eee/respol/v23y1994i5p487-521.html</a>. <span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Toward%20a%20new%20economics%20of%20science&amp;rft.jtitle=Research%20Policy&amp;rft.volume=23&amp;rft.issue=5&amp;rft.aufirst=Dasgupta&amp;rft.aulast=Partha&amp;rft.au=Dasgupta%20Partha&amp;rft.au=Paul%20A.%20David&amp;rft.date=1994&amp;rft.pages=487-521">&nbsp;</span></p>
+        <p style="margin:0em 0 0 0" id="David2008">David, Paul A. 2008. The Historical Origins of `Open Science': An Essay on Patronage, Reputation and Common Agency Contracting in the Scientific Revolution. <span style="font-style:italic;">Capitalism and Society</span> 3, no. 2 (October 24). doi:10.2202/1932-0213.1040. <a href="http://www.bepress.com/cas/vol3/iss2/art5">http://www.bepress.com/cas/vol3/iss2/art5</a>. <span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rft_id=info%3Adoi/10.2202/1932-0213.1040&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=The%20Historical%20Origins%20of%20%60Open%20Science'%3A%20An%20Essay%20on%20Patronage%2C%20Reputation%20and%20Common%20Agency%20Contracting%20in%20the%20Scientific%20Revolution&amp;rft.jtitle=Capitalism%20and%20Society&amp;rft.volume=3&amp;rft.issue=2&amp;rft.aufirst=Paul%20A.&amp;rft.aulast=David&amp;rft.au=Paul%20A.%20David&amp;rft.date=2008-10-24">&nbsp;</span></p>
+        <p style="margin:0em 0 0 0" id="Egghe2006">Egghe, Leo. 2006. Theory and practise of the g-index. ScientificCommons. http://hdl.handle.net/1942/981.</p>
+        <p style="margin:0em 0 0 0" id="Gans1994">Gans, Joshua S, and George B Shepherd. 1994. How Are the Mighty Fallen: Rejected Classic Articles by Leading Economists. <span style="font-style:italic;">Journal of Economic Perspectives</span> 8, no. 1. Journal of Economic Perspectives: 165-79. <a href="http://ideas.repec.org/a/aea/jecper/v8y1994i1p165-79.html">http://ideas.repec.org/a/aea/jecper/v8y1994i1p165-79.html</a>. <span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=How%20Are%20the%20Mighty%20Fallen%3A%20Rejected%20Classic%20Articles%20by%20Leading%20Economists&amp;rft.jtitle=Journal%20of%20Economic%20Perspectives&amp;rft.volume=8&amp;rft.issue=1&amp;rft.aufirst=Joshua%20S&amp;rft.aulast=Gans&amp;rft.au=Joshua%20S%20Gans&amp;rft.au=George%20B%20Shepherd&amp;rft.date=1994&amp;rft.pages=165-79">&nbsp;</span></p>
+        <p style="margin:0em 0 0 0" id="Garfield1979">Garfield, Eugene. 1979. Citation Indexing: Its Theory and Application in Science, Technology, and Humanities. In <span style="font-style:italic;">Mapping the structure of science</span>, 98--147. New York: John Wiley &amp; Sons, Inc. <span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.atitle=Citation%20Indexing%3A%20Its%20Theory%20and%20Application%20in%20Science%2C%20Technology%2C%20and%20Humanities&amp;rft.place=New%20York&amp;rft.publisher=John%20Wiley%20%26%20Sons%2C%20Inc&amp;rft.aufirst=Eugene&amp;rft.aulast=Garfield&amp;rft.au=Eugene%20Garfield&amp;rft.date=1979&amp;rft.pages=98--147">&nbsp;</span></p>
+        <p style="margin:0em 0 0 0" id="Garfield2006">Garfield, Eugene. 2006. The History and Meaning of the Journal Impact Factor. <span style="font-style:italic;">JAMA</span> 295, no. 1 (January 4): 90-93. doi:10.1001/jama.295.1.90. <a href="http://jama.ama-assn.org/">http://jama.ama-assn.org</a>. <span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rft_id=info%3Adoi/10.1001/jama.295.1.90&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=The%20History%20and%20Meaning%20of%20the%20Journal%20Impact%20Factor&amp;rft.jtitle=JAMA&amp;rft.volume=295&amp;rft.issue=1&amp;rft.aufirst=Eugene&amp;rft.aulast=Garfield&amp;rft.au=Eugene%20Garfield&amp;rft.date=2006&amp;rft.pages=90-93">&nbsp;</span></p>
+        <p style="margin:0em 0 0 0" id="Hanson1990">Hanson, Robin. 1990. Could Gambling Save Science? <span style="font-style:italic;">Eighth International Conference on Risk and Gambling</span> (July). <a href="http://hanson.gmu.edu/gamble.html">http://hanson.gmu.edu/gamble.html</a>. <span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Could%20Gambling%20Save%20Science%3F&amp;rft.jtitle=Eighth%20International%20Conference%20on%20Risk%20and%20Gambling&amp;rft.aufirst=Robin&amp;rft.aulast=Hanson&amp;rft.au=Robin%20Hanson&amp;rft.date=1990-07">&nbsp;</span></p>
+        <p style="margin:0em 0 0 0" id="Hirsch2005">Hirsch, J. E. 2005. An index to quantify an individual's scientific research output. <span style="font-style:italic;">Proceedings of the National Academy of Sciences of the United States of America</span> 102, no. 46 (November 15): 16569-16572. doi:10.1073/pnas.0507655102. <a href="http://www.pnas.org/content/102/46/16569.abstract">http://www.pnas.org/content/102/46/16569.abstract</a>. <span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rft_id=info%3Adoi/10.1073/pnas.0507655102&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=An%20index%20to%20quantify%20an%20individual's%20scientific%20research%20output&amp;rft.jtitle=Proceedings%20of%20the%20National%20Academy%20of%20Sciences%20of%20the%20United%20States%20of%20America&amp;rft.volume=102&amp;rft.issue=46&amp;rft.aufirst=J.%20E.&amp;rft.aulast=Hirsch&amp;rft.au=J.%20E.%20Hirsch&amp;rft.date=2005-11-15&amp;rft.pages=16569-16572">&nbsp;</span></p>
+        <p style="margin:0em 0 0 0" id="Lawrence1999">Lawrence, Steve, C. Lee Giles, and Kurt Bollacker. 1999. Digital libraries and autonomous citation indexing. <span style="font-style:italic;">IEEE COMPUTER</span> 32: 67--71. doi:10.1.1.17.1607. <a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.17.1607">http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.17.1607</a>. <span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rft_id=info%3Adoi/10.1.1.17.1607&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Digital%20libraries%20and%20autonomous%20citation%20indexing&amp;rft.jtitle=IEEE%20COMPUTER&amp;rft.volume=32&amp;rft.aufirst=Steve&amp;rft.aulast=Lawrence&amp;rft.au=Steve%20Lawrence&amp;rft.au=C.%20Lee%20Giles&amp;rft.au=Kurt%20Bollacker&amp;rft.date=1999&amp;rft.pages=67--71">&nbsp;</span></p>
+        <p style="margin:0em 0 0 0" id="Masum2004">Masum, Hassan, and Yi-Cheng Zhang. 2004. Manifesto for the Reputation Society (July 5). <a href="http://firstmonday.org/htbin/cgiwrap/bin/ojs/index.php/fm/article/viewArticle/1158/1078">http://firstmonday.org/htbin/cgiwrap/bin/ojs/index.php/fm/article/viewArticle/1158/1078</a>. <span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Manifesto%20for%20the%20Reputation%20Society&amp;rft.aufirst=Hassan&amp;rft.aulast=Masum&amp;rft.au=Hassan%20Masum&amp;rft.au=Yi-Cheng%20Zhang&amp;rft.date=2004-07-05">&nbsp;</span></p>
+        <p style="margin:0em 0 0 0" id="Meho2007">Meho, Lokman. 2007. The Rise and Rise of Citation Analysis. <span style="font-style:italic;">Physics World</span> 20 (January): 32--36. <a href="http://physicsworldarchive.iop.org/summary/pwa-xml/20/1/phwv20i1a33">http://physicsworldarchive.iop.org/summary/pwa-xml/20/1/phwv20i1a33</a>. <span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=The%20Rise%20and%20Rise%20of%20Citation%20Analysis&amp;rft.jtitle=Physics%20World&amp;rft.volume=20&amp;rft.aufirst=Lokman&amp;rft.aulast=Meho&amp;rft.au=Lokman%20Meho&amp;rft.date=2007&amp;rft.pages=32--36">&nbsp;</span></p>
+        <p style="margin:0em 0 0 0" id="Mele2006">Mele, Salvatore, David Dallman, Jens Vigen, and Joanne Yeomans. 2006. Quantitative Analysis of the Publishing Landscape in High-Energy Physics. <span style="font-style:italic;">cs/0611130</span> (November 26). <a href="http://arxiv.org/abs/cs/0611130">http://arxiv.org/abs/cs/0611130</a>. <span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Quantitative%20Analysis%20of%20the%20Publishing%20Landscape%20in%20High-Energy%20Physics&amp;rft.jtitle=cs%2F0611130&amp;rft.aufirst=Salvatore&amp;rft.aulast=Mele&amp;rft.au=Salvatore%20Mele&amp;rft.au=David%20Dallman&amp;rft.au=Jens%20Vigen&amp;rft.au=Joanne%20Yeomans&amp;rft.date=2006-11-26">&nbsp;</span></p>
+        <p style="margin:0em 0 0 0" id="Page1999">Page, Lawrence, Sergey Brin, Rajeev Motwani, and Terry Winograd. 1999. The PageRank Citation Ranking: Bringing Order to the Web. <span style="font-style:italic;">STANFORD INFOLAB</span>: 17. doi:10.1.1.31.1768. <a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.31.1768">http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.31.1768</a>. <span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rft_id=info%3Adoi/10.1.1.31.1768&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=The%20PageRank%20Citation%20Ranking%3A%20Bringing%20Order%20to%20the%20Web&amp;rft.jtitle=STANFORD%20INFOLAB&amp;rft.aufirst=Lawrence&amp;rft.aulast=Page&amp;rft.au=Lawrence%20Page&amp;rft.au=Sergey%20Brin&amp;rft.au=Rajeev%20Motwani&amp;rft.au=Terry%20Winograd&amp;rft.date=1999&amp;rft.pages=17">&nbsp;</span></p>
+        <p style="margin:0em 0 0 0" id="Riyanto2002">Riyanto, Yohanes E., and I. Hakan Yetkiner. A Market Mechanism for Scientific Communication: A Proposal. <span style="font-style:italic;">SSRN eLibrary</span>. http://papers.ssrn.com/sol3/papers.cfm?abstract_id=370496. <span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=A%20Market%20Mechanism%20for%20Scientific%20Communication%3A%20A%20Proposal&amp;rft.jtitle=SSRN%20eLibrary&amp;rft.aufirst=Yohanes%20E.&amp;rft.aulast=Riyanto&amp;rft.au=Yohanes%20E.%20Riyanto&amp;rft.au=I.%20Hakan%20Yetkiner">&nbsp;</span></p>
+        </div>
+    </li>
+
+    </ol>
+
+</body>
+</html>
+
+
+
+
+
+<!--
+     FILE ARCHIVED ON 2:31:15 Mar 25, 2012 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 2:39:20 Feb 23, 2016.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
