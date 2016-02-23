@@ -1,0 +1,122 @@
+body
+{
+	text-align: justify;
+	max-width: 90%;
+	margin: auto;
+}
+
+h1,h2,h3.author,h3.abstract
+{
+	text-align: center;
+}
+
+a
+{
+	color: grey;
+}
+
+h3.abstract
+{
+	margin-top: 3em;
+	font-style: italic;
+}
+
+.affiliation
+{
+	text-align: center;
+	margin: 1em;
+}
+
+.tech-report
+{
+	text-align: center;
+}
+
+.abstract-body
+{
+	margin: auto;
+	margin-bottom: 5em;
+	text-align: center;
+	max-width: 75%;
+}
+
+#abstract
+{
+	text-align: justify;
+	
+}
+
+li.section, li.unnumbered-section
+{
+	font-weight: bold;
+	font-size: large;
+}
+
+.unnumbered-section
+{
+	list-style-type: none;
+}
+
+h3
+{
+	font-size: large;
+}
+
+h4
+{
+	font-size: medium;
+}
+
+p,ol,ul,blockquote, li div
+{
+	line-height: 2em;
+	font-size: medium;
+	font-weight: normal;
+}
+
+blockquote
+{
+	font-style: italic;
+	line-height: 1em;
+	max-width: 75%;
+}
+
+.quote-attribution
+{
+	text-align: right;
+	line-height: 1em;
+}
+
+#introduction
+{
+	
+}
+
+#first-para:first-letter
+{
+	float:left;
+	color:#D4D4C7;
+	font-size:100px;
+	line-height:70px;
+	padding-top:2px;
+}
+
+#conclusion
+{
+	
+}
+
+.references, #references
+{
+
+}
+
+.unnumbered-head
+{
+	font-style: italic;
+}
+
+.reputation_symbol
+{
+	font-family: arial unicode ms;
+}
